@@ -1,9 +1,6 @@
 import express from 'express';
 import AgendaModel from "../models/Agendas.js";
 import multer from 'multer';
-import fs from 'fs';
-import * as ExcelJs from 'exceljs';
-import csv from 'csvtojson';
 import XLXS from 'xlsx';
 
 export const fileUpload = async(req, res) => {
@@ -66,11 +63,8 @@ router.route("/add").post((req, res) => {
             const agenda = req.body;
             const newAgenda = new AgendaModel(agenda);
             newAgenda.save();
-        
-            res.json(agenda);
-        
+            res.json(agenda);     
 });
-
 
 router.route('/upload').post(upload.single('file'),  convertCSVTOJSON);
 

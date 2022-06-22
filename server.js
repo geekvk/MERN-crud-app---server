@@ -24,15 +24,11 @@ connection.once("open", () => {
     console.log("mongoDB is connected");
 })
 
-
 // api end points
 app.use("/agendas", agendaRouter);
 app.use("/agendas/upload", express.static(path.join(__dirname, 'public')));
 
-
-
 app.get('/download', (req, res) => {
-    // res.download('./public/Agenda Doc.csv');
     var wb = XLXS.utils.book_new();
     AgendaModel.find((err, data) => {
         if(err){
