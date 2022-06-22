@@ -58,6 +58,7 @@ router.route('/:id').get(async(req, res) => {
         return res.json(agenda);
     }catch(err){
         return res.status(500).json(err);
+        
     }
 })
 router.route('/update/:id').put(async(req, res)=> {
