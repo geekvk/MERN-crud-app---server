@@ -49,6 +49,7 @@ router.route('/').get((req, res) => {
         }
     })
 });
+
 router.route('/:id').get(async(req, res) => {
     try{
         const {id} = req.params;
@@ -59,6 +60,11 @@ router.route('/:id').get(async(req, res) => {
         return res.status(500).json(err);
     }
 })
+router.route('/update/:id').put(async(req, res)=> {
+    const agenda = await AgendaModel.findOneAndUpdate(req.params.id, req.body);
+    console.log(agenda);
+    return res.send('Updated');
+});
 router.route("/add").post((req, res) => {
             const agenda = req.body;
             const newAgenda = new AgendaModel(agenda);
